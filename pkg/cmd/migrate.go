@@ -1,14 +1,13 @@
 package cmd
 
-import "fmt"
+/*
+// Migration of a single file
+func runMigrationForSingleFile(filename string) {
 
-func runMigration() {
-	fmt.Printf("Running migration \n")
-	// ここにマイグレーション処理を追加
 }
 
-// runMigration handles the migration command.
-func runMigration(filename string) {
-	fmt.Printf("Running migration with filename: %s\n", filename)
-	// ここにマイグレーション処理を追加
+// Migration of all files
+func runMigrationForAllFiles() {
+
 }
+*/
