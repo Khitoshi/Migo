@@ -1,2 +1,3 @@
 # Migo
+
 golangで使用する、PHPのmigration機能の様な物...
