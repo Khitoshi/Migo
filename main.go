@@ -28,7 +28,7 @@ func migrationCommand() *cobra.Command {
 		Long:  `Commands for creating and applying database migrations.`,
 	}
 
-	rootCmd.AddCommand(cmd.MigrationInitCommand())
+	migrationCmd.AddCommand(cmd.MigrationInitCommand())
 	migrationCmd.AddCommand(cmd.MigrationCreateCommand())
 	migrationCmd.AddCommand(cmd.MigrationUpCommand())
 	return migrationCmd
