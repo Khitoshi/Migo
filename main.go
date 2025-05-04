@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/Khitoshi/Migo.git/cmd"
 	_ "github.com/lib/pq"
 
 	"github.com/spf13/cobra"
@@ -17,20 +18,7 @@ var rootCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(initCommand())
 	rootCmd.AddCommand(migrationCommand())
-}
-
-func initCommand() *cobra.Command {
-	return &cobra.Command{
-		Use:   "init",
-		Short: "Initialize the database",
-		Long:  `Initialize the database and create necessary tables for migration tracking.`,
-		Run: func(cmd *cobra.Command, args []string) {
-			fmt.Println("Initializing the database...")
-			// 初期化ロジックをここに実装
-		},
-	}
 }
 
 func migrationCommand() *cobra.Command {
@@ -40,34 +28,10 @@ func migrationCommand() *cobra.Command {
 		Long:  `Commands for creating and applying database migrations.`,
 	}
 
-	migrationCmd.AddCommand(createMigrationCommand())
-	migrationCmd.AddCommand(upMigrationCommand())
-
+	rootCmd.AddCommand(cmd.MigrationInitCommand())
+	migrationCmd.AddCommand(cmd.MigrationCreateCommand())
+	migrationCmd.AddCommand(cmd.MigrationUpCommand())
 	return migrationCmd
-}
-
-func createMigrationCommand() *cobra.Command {
-	return &cobra.Command{
-		Use:   "create [name]",
-		Short: "Create a new migration file",
-		Args:  cobra.ExactArgs(1),
-		Run: func(cmd *cobra.Command, args []string) {
-			name := args[0]
-			fmt.Printf("Creating migration file: %s\n", name)
-			// マイグレーションファイル作成ロジックをここに実装
-		},
-	}
-}
-
-func upMigrationCommand() *cobra.Command {
-	return &cobra.Command{
-		Use:   "up",
-		Short: "Apply all pending migrations",
-		Run: func(cmd *cobra.Command, args []string) {
-			fmt.Println("Applying all pending migrations...")
-			// マイグレーション適用ロジックをここに実装
-		},
-	}
 }
 
 func main() {
